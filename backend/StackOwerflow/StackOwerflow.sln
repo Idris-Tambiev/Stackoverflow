@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackOwerflow", "StackOwerflow\StackOwerflow.csproj", "{6C2ADFE6-BB79-49D2-849E-77BEBBC5DAA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C2ADFE6-BB79-49D2-849E-77BEBBC5DAA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C2ADFE6-BB79-49D2-849E-77BEBBC5DAA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C2ADFE6-BB79-49D2-849E-77BEBBC5DAA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C2ADFE6-BB79-49D2-849E-77BEBBC5DAA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {648C9AAA-C41F-4B74-895B-FB3FE2B4D880}
+	EndGlobalSection
+EndGlobal
