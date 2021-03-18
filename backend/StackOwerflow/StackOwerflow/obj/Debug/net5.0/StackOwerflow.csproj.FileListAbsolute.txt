@@ -76,3 +76,4 @@ D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\obj\Debug\net5.0\sco
 D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\obj\Debug\net5.0\StackOwerflow.RazorTargetAssemblyInfo.cache
 D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\obj\Debug\net5.0\StackOwerflow.csproj.CopyComplete
 D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\obj\Debug\net5.0\StackOwerflow.genruntimeconfig.cache
+D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\bin\Debug\net5.0\AutoMapper.dll
