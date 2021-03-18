@@ -11,5 +11,7 @@ namespace StackOwerflow.Models
         public string QuestionText { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
+
+        public List<Answer> Answer { get; set; }
     }
 }

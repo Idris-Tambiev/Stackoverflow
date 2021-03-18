@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using StackOwerflow.Models;
 
 namespace StackOwerflow
 {
@@ -16,6 +18,9 @@ namespace StackOwerflow
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+           
+            services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer("Server=DESKTOP-IN5H1UR\\SQLEXPRESS;Database=stackdb;Trusted_Connection=True;"));
             services.AddControllers();
         }
 
@@ -28,8 +33,6 @@ namespace StackOwerflow
             }
 
             app.UseRouting();
-
-
 
             app.UseEndpoints(endpoints =>
             {

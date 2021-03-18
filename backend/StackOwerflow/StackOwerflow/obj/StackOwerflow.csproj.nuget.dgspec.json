@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Simple StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj": {}
+    "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj": {}
   },
   "projects": {
-    "D:\\Simple StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj": {
+    "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Simple StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
+        "projectUniqueName": "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
         "projectName": "StackOwerflow",
-        "projectPath": "D:\\Simple StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
+        "projectPath": "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
         "packagesPath": "C:\\Users\\Idris\\.nuget\\packages\\",
-        "outputPath": "D:\\Simple StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\obj\\",
+        "outputPath": "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Idris\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,12 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.4, )"
             }

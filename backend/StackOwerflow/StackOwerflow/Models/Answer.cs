@@ -9,7 +9,8 @@ namespace StackOwerflow.Models
     {
         public int id { get; set; }
         public string AnswerText { get; set; }
-        public string idQuestion { get; set; }
+        
         public DateTime Date { get; set; }
+        public Question Question { get; set; }
     }
 }
