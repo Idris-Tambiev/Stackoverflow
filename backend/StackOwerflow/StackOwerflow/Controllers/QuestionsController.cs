@@ -34,8 +34,7 @@ namespace StackOwerflow.Controllers
                 .ToListAsync();
 
             var DTO = _mapper.Map<IEnumerable<Question>,IEnumerable<QuestionsDto>>(a);
-
-            return new ObjectResult (DTO);
+            return Ok(DTO);
         }
 
         //GET api/questions/id
