@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "ubgNf47qrJDcIspAzIfpNWrd7hIKDx+Np4AmFaXCfx/VjstbKVbbeFHy2xPCPFxaBe4EtpOgnrrcSwU/7RF+mw==",
+  "dgSpecHash": "D4e5wBhmEMeoB4b7i51RMp0Q2dmaMvp1Q3Fw2DAkRZWStO/VIMW3lTRgwWMNZgyf3fElJJ4SzrdlcPRzH0rgtQ==",
   "success": true,
   "projectFilePath": "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Idris\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\Idris\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
     "C:\\Users\\Idris\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Idris\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Idris\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",

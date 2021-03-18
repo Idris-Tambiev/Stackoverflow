@@ -9,6 +9,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using StackOwerflow.Models;
+using StackOwerflow.Mapper;
+using AutoMapper;
 
 namespace StackOwerflow
 {
@@ -18,9 +20,15 @@ namespace StackOwerflow
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-           
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer("Server=DESKTOP-IN5H1UR\\SQLEXPRESS;Database=stackdb;Trusted_Connection=True;"));
+            options.UseSqlServer("Server=DESKTOP-IN5H1UR\\SQLEXPRESS;Database=stackdb;Trusted_Connection=True;"));
             services.AddControllers();
         }
 

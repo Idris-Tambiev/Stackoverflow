@@ -15,10 +15,11 @@ namespace StackOwerflow.Controllers
     public class QuestionsController : ControllerBase
     {
         AppDbContext db;
-
-        public QuestionsController(AppDbContext context)
+        private readonly IMapper _mapper;
+        public QuestionsController(AppDbContext context, IMapper mapper)
         {
             db = context;
+            _mapper = mapper;
         }
         public class Mapper{
          }
@@ -28,21 +29,11 @@ namespace StackOwerflow.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Question>>> Get()
         {
-            var config = new MapperConfiguration(cfg =>
-                    cfg.CreateMap<Question, QuestionsDto>()
-                    .ForMember(dest => dest.id, act => act.MapFrom(src => src.id))
-                    .ForMember(dest => dest.Description, act => act.MapFrom(src => src.Description))
-                    .ForMember(dest => dest.QuestionText, act => act.MapFrom(src => src.QuestionText))
-                    .ForMember(dest => dest.Date, act => act.MapFrom(src => src.Date))
-                    .ForMember(dest => dest.AnswersCount, act => act.MapFrom(src => src.Answer.Count))
-                );
-
             var a = await db.Questions
                 .Include(x => x.Answer)
                 .ToListAsync();
 
-            IMapper iMapper = config.CreateMapper();
-            var DTO = iMapper.Map<IEnumerable<Question>,IEnumerable<QuestionsDto>>(a);
+            var DTO = _mapper.Map<IEnumerable<Question>,IEnumerable<QuestionsDto>>(a);
 
             return new ObjectResult (DTO);
         }
