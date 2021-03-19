@@ -34,7 +34,7 @@ namespace StackOwerflow.Controllers
                 var answer = await db.Answers.Where(s => s.Questionid == id).ToListAsync(); 
             if (answer == null)
                 return NotFound();
-            return new ObjectResult(answer);
+            return Ok(answer);
         }
 
         //POST api/questions

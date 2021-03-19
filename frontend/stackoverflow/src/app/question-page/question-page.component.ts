@@ -35,6 +35,8 @@ export class QuestionPageComponent implements OnInit {
   getAnswers() {
     this.httpAnswerService.getAnswers(this.idQuestion).subscribe((data) => {
       this.answers = data;
+      console.log(data);
+      console.log(this.answers[0].answerText);
     });
   }
 }

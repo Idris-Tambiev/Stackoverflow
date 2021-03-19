@@ -1,6 +1,6 @@
 export interface Answer {
   id: number;
-  AnswerText: string;
+  answerText: string;
   date: string;
-  Questionid: number;
+  questionid: number;
 }
