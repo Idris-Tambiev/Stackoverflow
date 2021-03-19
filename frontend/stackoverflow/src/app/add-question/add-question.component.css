@@ -1,0 +1,14 @@
+.newQuestion {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  width: 40%;
+}
+input {
+  width: 40%;
+}
+textarea {
+  width: 40%;
+  height: 300px;
+}

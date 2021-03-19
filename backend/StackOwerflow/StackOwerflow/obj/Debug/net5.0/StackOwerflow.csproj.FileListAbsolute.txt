@@ -78,3 +78,4 @@ D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\obj\Debug\net5.0\Sta
 D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\obj\Debug\net5.0\StackOwerflow.genruntimeconfig.cache
 D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\bin\Debug\net5.0\AutoMapper.dll
 D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\Simple_StackOwerflow\backend\StackOwerflow\StackOwerflow\obj\Debug\net5.0\StackOwerflow.csprojAssemblyReference.cache

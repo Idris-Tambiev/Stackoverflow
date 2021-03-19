@@ -30,7 +30,8 @@ namespace StackOwerflow.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Answer>> Get(int id)
         {
-            Answer answer = await db.Answers.FirstOrDefaultAsync(x => x.Questionid == id);
+           // Answer answer;
+                var answer = await db.Answers.Where(s => s.Questionid == id).ToListAsync(); 
             if (answer == null)
                 return NotFound();
             return new ObjectResult(answer);

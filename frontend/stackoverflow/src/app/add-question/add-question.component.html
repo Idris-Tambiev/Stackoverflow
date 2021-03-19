@@ -1,6 +1,8 @@
-<div class="">
+<div class="newQuestion">
     <h1>Add New Question</h1>
-    <input type="text" placeholder="Title..">
-    <input type="text" placeholder="Description">
-    <button>Add</button>
+    <input matInput type="text" placeholder="Title.." (input)="getTitle($event)">
+    <br>
+    <textarea matInput type="text" placeholder="Description" (input)="getDescription($event)"></textarea>
+    <br>
+    <button mat-raised-button color="primary" (click)="createNewQuestion()">Add</button>
 </div>

@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { Question } from 'src/app/interfaces/question';
 @Component({
   selector: 'app-questions-items',
   templateUrl: './questions-items.component.html',
-  styleUrls: ['./questions-items.component.css']
+  styleUrls: ['./questions-items.component.css'],
 })
 export class QuestionsItemsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor() {}
+  @Input() questions: Question;
+  ngOnInit(): void {}
 }
