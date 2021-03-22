@@ -50,14 +50,14 @@ namespace StackOwerflow.Controllers
 
         //POST api/answers
         [HttpPost]
-        public async Task<ActionResult<Answer>> Post(CreateAnswer answer)
+        public async Task<ActionResult<Answer>> Post(CreateAnswerDto answer)
         {
             if (answer == null)
             {
                 return BadRequest();
             }
 
-            var NewAnswer = _mapper.Map<CreateAnswer, Answer>(answer);
+            var NewAnswer = _mapper.Map<CreateAnswerDto, Answer>(answer);
             db.Answers.Add(NewAnswer);
             await db.SaveChangesAsync();
             return Ok(NewAnswer);

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace StackOwerflow.Models
 {
-    public class CreateAnswer
+    public class CreateQuestionDto
     {
-        public string AnswerText { get; set; }
-        public int Questionid { get; set; }
+        public string QuestionText { get; set; }
+        public string Description { get; set; }
     }
 }

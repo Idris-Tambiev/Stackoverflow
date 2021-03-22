@@ -68,7 +68,6 @@ namespace StackOwerflow.Controllers
             }
         }
 
-
         //GET api/questions/id
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> Get(int id)
@@ -91,13 +90,13 @@ namespace StackOwerflow.Controllers
         
         //POST api/questions
         [HttpPost]
-        public async Task<ActionResult<Question>> Post(CreateQuestion question)
+        public async Task<ActionResult<Question>> Post(CreateQuestionDto question)
         {
             if (question == null)
             {
                 return BadRequest();
             }
-            var NewQuestion = _mapper.Map<CreateQuestion, Question>(question);
+            var NewQuestion = _mapper.Map<CreateQuestionDto, Question>(question);
             
             db.Questions.Add(NewQuestion);
             await db.SaveChangesAsync();

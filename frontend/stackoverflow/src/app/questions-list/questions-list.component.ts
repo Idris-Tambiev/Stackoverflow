@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../interfaces/question';
-import { All } from 'src/app/interfaces/all';
 import { QuestionsService } from '../services/questions.service';
 
 @Component({
@@ -9,8 +8,11 @@ import { QuestionsService } from '../services/questions.service';
   styleUrls: ['./questions-list.component.css'],
 })
 export class QuestionsListComponent implements OnInit {
+  allLists: boolean = true;
   pagesCount: number = 1;
   currentPage: number = 1;
+  currentFindedPage: number = 1;
+  finds: number = 0;
   questions: Question[] = [];
   allQuestions: Question[] = [];
   constructor(private httpService: QuestionsService) {}
@@ -33,13 +35,14 @@ export class QuestionsListComponent implements OnInit {
     this.value = event.target.value;
   }
 
-  findQuestion() {
+  findQuestion(page: number) {
     if (this.value !== '' && this.value !== undefined) {
-      this.httpService.find(this.value, 1).subscribe((data) => {
+      this.httpService.find(this.value, page).subscribe((data) => {
         this.pagesCount = Math.ceil(data.countQuestions / 5);
         this.questions = data.questionsArray;
-        this.currentPage = 1;
         console.log(data.countQuestions);
+        this.currentPage = page;
+        this.allLists = false;
       });
     } else {
       this.getAllQuestions(1);
@@ -49,8 +52,12 @@ export class QuestionsListComponent implements OnInit {
   counter(i: number) {
     return new Array(i);
   }
+
   clickOnPage(event: any) {
     this.currentPage = event.target.value;
-    this.getAllQuestions(event.target.value);
+    if (this.allLists) this.getAllQuestions(event.target.value);
+    else {
+      this.findQuestion(event.target.value);
+    }
   }
 }
