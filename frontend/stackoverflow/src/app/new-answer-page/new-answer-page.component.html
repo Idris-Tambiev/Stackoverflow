@@ -1,1 +1,6 @@
-<p>new-answer-page works!</p>
+<div class="newAnswer">
+    <h1>Add New Answer</h1>
+    <textarea matInput type="text" placeholder="Answer..." (input)="getAnswer($event)"></textarea>
+    <br>
+    <button mat-raised-button color="primary" (click)="createNewAnswer()">Add</button>
+</div>

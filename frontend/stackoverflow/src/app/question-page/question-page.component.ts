@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionsService } from 'src/app/services/questions.service';
 import { AnswersService } from 'src/app/services/answers.service';
@@ -11,14 +11,16 @@ import { Question } from 'src/app/interfaces/question';
 })
 export class QuestionPageComponent implements OnInit {
   answers: Answer[] = [];
+  pagesCount: number = 1
   question: Question;
   idQuestion: number;
   displayedColumns: string[] = ['id', 'AnswerText', 'Date', 'Questionid'];
+
   constructor(
     private route: ActivatedRoute,
     private httpQuestionService: QuestionsService,
     private httpAnswerService: AnswersService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -28,15 +30,23 @@ export class QuestionPageComponent implements OnInit {
   getQuestion() {
     this.httpQuestionService.getQuestion(this.idQuestion).subscribe((data) => {
       this.question = data;
-      console.log(data);
-      this.getAnswers();
+      this.pagesCount = Math.ceil(data.answersCount / 5)
+      this.getAnswers(1);
     });
   }
-  getAnswers() {
-    this.httpAnswerService.getAnswers(this.idQuestion).subscribe((data) => {
+
+  getAnswers(pageNumber: number) {
+    this.httpAnswerService.getAnswers(this.idQuestion, pageNumber).subscribe((data) => {
       this.answers = data;
-      console.log(data);
-      console.log(this.answers[0].answerText);
+      console.log(this.question.answersCount);
     });
+  }
+
+  counter(i: number) {
+    return new Array(i);
+  }
+
+  clickOnPage(event: any) {
+    this.getAnswers(event.target.value)
   }
 }

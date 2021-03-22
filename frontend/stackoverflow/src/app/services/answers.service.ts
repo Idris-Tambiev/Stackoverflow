@@ -7,11 +7,17 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class AnswersService {
   configUrl: string = environment.Url;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getAnswers(questionId: number): Observable<Answer[]> {
+  getAnswers(questionId: number, page: number): Observable<Answer[]> {
     return this.http.get<Answer[]>(
-      this.configUrl + '/api/answers/' + questionId
+      this.configUrl + '/api/answers/' + questionId + '/' + page
     );
   }
+  postNewAnswer(answer: Answer): Observable<string> {
+    return this.http.post(this.configUrl + '/api/answers', answer, {
+      responseType: 'text',
+    });
+  }
+
 }

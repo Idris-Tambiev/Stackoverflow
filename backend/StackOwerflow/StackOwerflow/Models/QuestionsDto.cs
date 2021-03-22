@@ -7,11 +7,7 @@ namespace StackOwerflow.Models
 {
     public class QuestionsDto
     {
-        public int id { get; set; }
-        public string QuestionText { get; set; }
-        public string Description { get; set; }
-        public int AnswersCount { get; set; }
-        public DateTime Date { get; set; }
-
+        public int countQuestions { get; set; }
+        public List<QuestionsArray> QuestionsArray { get; set; }
     }
 }

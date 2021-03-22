@@ -24,12 +24,11 @@ namespace StackOwerflow
             {
                 mc.AddProfile(new MappingProfile());
             });
-
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
             services.AddCors();
             services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer("Server=DESKTOP-IN5H1UR\\SQLEXPRESS;Database=stackdb;Trusted_Connection=True;"));
+            options.UseSqlServer("Server=USER-PC\\SQLEXPRESS;Database=stackdb;Trusted_Connection=True;"));
             services.AddControllers();
         }
 
@@ -43,7 +42,7 @@ namespace StackOwerflow
 
             app.UseRouting();
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader());
-
+            app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

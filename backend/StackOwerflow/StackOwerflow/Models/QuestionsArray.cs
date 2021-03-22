@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace StackOwerflow.Models
 {
-    public class Answer
+    public class QuestionsArray
     {
         public int id { get; set; }
-        public string AnswerText { get; set; }
+        public string QuestionText { get; set; }
+        public string Description { get; set; }
+        public int AnswersCount { get; set; }
         public DateTime Date { get; set; }
-        public int Questionid { get; set; }
-        public Question Question { get; set; }
     }
 }

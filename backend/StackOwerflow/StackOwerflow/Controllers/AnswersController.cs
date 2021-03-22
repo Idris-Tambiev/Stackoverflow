@@ -19,25 +19,33 @@ namespace StackOwerflow.Controllers
             db = context;
         }
 
-        //GET api/answers
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Answer>>> Get()
-        {
-            return await db.Answers.ToListAsync();
-        }
-
         //GET api/answers/id
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Answer>> Get(int id)
+        [HttpGet("{id}/{page}")]
+        public async Task<ActionResult<Answer>> Get(int id,int page)
         {
-           // Answer answer;
-                var answer = await db.Answers.Where(s => s.Questionid == id).ToListAsync(); 
+            int number = page;
+            int maxLength = 0;
+            List<Answer> getArray = new List<Answer>();
+
+            var answer = await db.Answers.Where(s => s.Questionid == id).ToListAsync();
+            if (answer.Count() < number * 5 - 1)
+                {
+                 maxLength = answer.Count();
+                }
+            else
+                {
+                    maxLength = number * 5;
+                }
+            for (int j = number * 5 - 5; j < maxLength; j++)
+                 {
+                    getArray.Add(answer[j]);
+                 }
             if (answer == null)
                 return NotFound();
-            return Ok(answer);
+            return Ok(getArray);
         }
 
-        //POST api/questions
+        //POST api/answers
         [HttpPost]
         public async Task<ActionResult<Question>> Post(Answer answer)
         {

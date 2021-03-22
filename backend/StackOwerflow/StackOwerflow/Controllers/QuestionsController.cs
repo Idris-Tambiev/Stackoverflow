@@ -21,30 +21,51 @@ namespace StackOwerflow.Controllers
             db = context;
             _mapper = mapper;
         }
-        public class Mapper{
-         }
 
-
-        //GET api/questions
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Question>>> Get()
+        //GET api/questions/id/page
+        [HttpGet("{id}/{page}")]
+        public async Task<ActionResult<IEnumerable<Question>>> Get(int id,int page)
         {
+            int number = page;
+            int maxLength = 0;
+            List<Question> getArray = new List<Question>();
             var a = await db.Questions
                 .Include(x => x.Answer)
                 .ToListAsync();
 
-            var DTO = _mapper.Map<IEnumerable<Question>,IEnumerable<QuestionsDto>>(a);
-            return Ok( DTO);
+            if (a.Count() < number * 5 - 1)
+            {
+                maxLength = a.Count();
+            }
+            else
+            {
+                maxLength = number * 5;
+            }
+             for (int j = number * 5 - 5; j < maxLength; j++)
+            {
+             getArray.Add(a[j]);
+            }
+
+            var array = _mapper.Map<IEnumerable<Question>, IEnumerable<QuestionsArray>>(getArray);
+            
+            var result = new QuestionsDto
+            {
+                countQuestions =  db.Questions.Count(),
+                QuestionsArray = array.ToList()
+            };
+            return Ok(result);
         }
+
 
         //GET api/questions/id
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> Get(int id)
         {
-            Question question = await db.Questions.FirstOrDefaultAsync(x => x.id == id);
+            Question question = await db.Questions.Include(x => x.Answer).FirstOrDefaultAsync(x => x.id == id);
+            var array = _mapper.Map<Question, QuestionsArray>(question);
             if (question == null)
                 return NotFound();
-            return new ObjectResult(question);
+            return new ObjectResult(array);
         }
 
         //POST api/questions
@@ -59,7 +80,5 @@ namespace StackOwerflow.Controllers
             await db.SaveChangesAsync();
             return Ok(question);
         }
-
-        
     }
 }

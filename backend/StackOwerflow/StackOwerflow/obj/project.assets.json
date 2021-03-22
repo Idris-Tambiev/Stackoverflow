@@ -5865,19 +5865,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Idris\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
+      "projectUniqueName": "D:\\ITPREMIUM\\Stackoverflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
       "projectName": "StackOwerflow",
-      "projectPath": "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
-      "packagesPath": "C:\\Users\\Idris\\.nuget\\packages\\",
-      "outputPath": "D:\\Simple_StackOwerflow\\backend\\StackOwerflow\\StackOwerflow\\obj\\",
+      "projectPath": "D:\\ITPREMIUM\\Stackoverflow\\backend\\StackOwerflow\\StackOwerflow\\StackOwerflow.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\ITPREMIUM\\Stackoverflow\\backend\\StackOwerflow\\StackOwerflow\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Idris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5940,7 +5944,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }
