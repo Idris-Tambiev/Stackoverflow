@@ -24,72 +24,48 @@ namespace StackOwerflow.Controllers
 
         //GET api/questions/id/page
         [HttpGet("{id}/{page}")]
-        public async Task<ActionResult<IEnumerable<Question>>> Get(int id,int page)
+        public async Task<ActionResult<QuestionsDto>> Get(int id,int page)
         {
-            int number = page;
-            int maxLength = 0;
-            List<Question> getArray = new List<Question>();
-            var a = await db.Questions
-                .Include(x => x.Answer)
-                .ToListAsync();
-
-            if (a.Count() < number * 5 - 1)
+            if (page >= 1 && id>=1)
             {
-                maxLength = a.Count();
+                int number = page;
+                var questions = await db.Questions
+                    .OrderBy(i => i.id)
+                    .Skip(number * 5 - 5)
+                    .Take(5)
+                    .Include(x => x.Answer)
+                    .ToListAsync();
+
+                var totalCount = await db.Questions.CountAsync();
+                return Ok(FormDto(questions, totalCount));
             }
             else
             {
-                maxLength = number * 5;
+                return NotFound();
             }
-             for (int j = number * 5 - 5; j < maxLength; j++)
-            {
-             getArray.Add(a[j]);
-            }
-
-            var array = _mapper.Map<IEnumerable<Question>, IEnumerable<QuestionsArray>>(getArray);
             
-            var result = new QuestionsDto
-            {
-                countQuestions =  db.Questions.Count(),
-                QuestionsArray = array.ToList()
-            };
-            return Ok(result);
         }
 
         [HttpGet("{words}/search/{page}")]
-        public async Task<ActionResult<IEnumerable<Question>>> Get(string words,int page)
+        public async Task<ActionResult<QuestionsDto>> Get(string words,int page)
         {
-            
-            int number = page;
-            int maxLength = 0;
-            List<Question> getArray = new List<Question>();
-
-            var a = await db.Questions
-                .Where(p=>p.QuestionText.Contains(words))
-                .Include(x => x.Answer)
-                .ToListAsync();
-
-            if (a.Count() < number * 5 - 1)
+            if (page >= 1 && words != "")
             {
-                maxLength = a.Count();
+                int number = page;
+                var findedQuestions = await db.Questions
+                    .OrderBy(i => i.id)
+                    .Where(p => p.QuestionText.Contains(words))
+                    .Skip(number * 5 - 5)
+                    .Take(5)
+                    .Include(x => x.Answer)
+                    .ToListAsync();
+
+                var count = await db.Questions.Where(p => p.QuestionText.Contains(words)).CountAsync();
+                return Ok(FormDto(findedQuestions, count));
+            }else
+            {
+                return NotFound();
             }
-            else
-            {
-                maxLength = number * 5;
-            }
-            for (int j = number * 5 - 5; j < maxLength; j++)
-            {
-                getArray.Add(a[j]);
-            }
-
-            var array = _mapper.Map<IEnumerable<Question>, IEnumerable<QuestionsArray>>(getArray);
-
-            var result = new QuestionsDto
-            {
-                countQuestions = a.Count(),
-                QuestionsArray = array.ToList()
-            };
-            return Ok(result);
         }
 
 
@@ -97,24 +73,46 @@ namespace StackOwerflow.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> Get(int id)
         {
-            Question question = await db.Questions.Include(x => x.Answer).FirstOrDefaultAsync(x => x.id == id);
-            var array = _mapper.Map<Question, QuestionsArray>(question);
-            if (question == null)
+            if (id >= 1)
+            {
+                Question question = await db.Questions.Include(x => x.Answer).FirstOrDefaultAsync(x => x.id == id);
+                if (question == null)
+                    return NotFound();
+                var array = _mapper.Map<Question, QuestionDto>(question);
+                return Ok(array);
+            }
+            else
+            {
                 return NotFound();
-            return Ok(array);
+            }
+           
         }
 
+        
         //POST api/questions
         [HttpPost]
-        public async Task<ActionResult<Question>> Post(Question question)
+        public async Task<ActionResult<Question>> Post(CreateQuestion question)
         {
             if (question == null)
             {
                 return BadRequest();
             }
-            db.Questions.Add(question);
+            var NewQuestion = _mapper.Map<CreateQuestion, Question>(question);
+            
+            db.Questions.Add(NewQuestion);
             await db.SaveChangesAsync();
             return Ok(question);
+        }
+
+        private QuestionsDto FormDto(List<Question> a, int count)
+        {
+            var array = _mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDto>>(a);
+            var result = new QuestionsDto
+            {
+                CountQuestions = count,
+                QuestionsArray = array
+            };
+            return result;
         }
     }
 }

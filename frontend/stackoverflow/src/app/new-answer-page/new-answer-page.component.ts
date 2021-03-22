@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Answer } from 'src/app/interfaces/answer';
-import { AnswersService } from 'src/app/services/answers.service'
+import { AnswersService } from 'src/app/services/answers.service';
 import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-new-answer-page',
   templateUrl: './new-answer-page.component.html',
-  styleUrls: ['./new-answer-page.component.css']
+  styleUrls: ['./new-answer-page.component.css'],
 })
-
 export class NewAnswerPageComponent implements OnInit {
-
   answer: Answer = {
     id: 0,
-    answerText: "",
+    answerText: '',
     questionid: 0,
-    date: "",
-  }
-  idQuestion: number
+    date: '',
+  };
+  idQuestion: number;
 
-  constructor(private httpAnswerService: AnswersService,
-    private route: ActivatedRoute,) { }
+  constructor(
+    private httpAnswerService: AnswersService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -32,12 +32,8 @@ export class NewAnswerPageComponent implements OnInit {
   }
 
   createNewAnswer() {
-    if (
-      this.answer.answerText !== '' &&
-      this.answer.answerText !== ''
-    ) {
-      this.answer.date = new Date().toISOString()
-      this.answer.questionid = this.idQuestion
+    if (this.answer.answerText !== '' && this.answer.answerText !== '') {
+      this.answer.questionid = this.idQuestion;
       this.httpAnswerService.postNewAnswer(this.answer).subscribe(
         (response: string) => {
           console.log(response);
@@ -46,5 +42,4 @@ export class NewAnswerPageComponent implements OnInit {
       );
     }
   }
-
 }

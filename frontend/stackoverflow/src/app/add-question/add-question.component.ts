@@ -10,15 +10,14 @@ import { QuestionsService } from 'src/app/services/questions.service';
 export class AddQuestionComponent implements OnInit {
   newQuestion: Question = {
     id: 0,
-    questionText: "",
-    description: "",
-    date: "",
-    answersCount: 0
+    questionText: '',
+    description: '',
+    date: '',
+    answersCount: 0,
+  };
+  constructor(private httpService: QuestionsService) {}
 
-  }
-  constructor(private httpService: QuestionsService) { }
-
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   getTitle(event: any) {
     if (event.target.value !== '') {
@@ -37,8 +36,6 @@ export class AddQuestionComponent implements OnInit {
       this.newQuestion.description !== '' &&
       this.newQuestion.questionText !== ''
     ) {
-      this.newQuestion.date = new Date().toISOString()
-      console.log(this.newQuestion.date)
       this.httpService.postNewQuestion(this.newQuestion).subscribe(
         (response: string) => {
           console.log(response);

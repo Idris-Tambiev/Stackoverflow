@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StackOwerflow.Models;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace StackOwerflow.Controllers
 {
@@ -14,48 +15,52 @@ namespace StackOwerflow.Controllers
     public class AnswersController : ControllerBase
     {
         AppDbContext db;
-        public AnswersController(AppDbContext context)
+        private readonly IMapper _mapper;
+        public AnswersController(AppDbContext context, IMapper mapper)
         {
             db = context;
+            _mapper = mapper;
         }
 
         //GET api/answers/id
         [HttpGet("{id}/{page}")]
-        public async Task<ActionResult<Answer>> Get(int id,int page)
+        public async Task<ActionResult<IEnumerable<AnswerDto>>> Get(int id,int page)
         {
-            int number = page;
-            int maxLength = 0;
-            List<Answer> getArray = new List<Answer>();
+            if(id>=1 && page >= 1)
+            {
+                int number = page;
+                var answers = await db.Answers
+                    .Where(s => s.Questionid == id)
+                    .Skip(number * 5 - 5)
+                    .Take(5)
+                    .ToListAsync();
 
-            var answer = await db.Answers.Where(s => s.Questionid == id).ToListAsync();
-            if (answer.Count() < number * 5 - 1)
-                {
-                 maxLength = answer.Count();
-                }
+                if (answers == null)
+                    return NotFound();
+
+                var array = _mapper.Map<IEnumerable<Answer>, IEnumerable<AnswerDto>>(answers);
+                return Ok(array);
+            }
             else
-                {
-                    maxLength = number * 5;
-                }
-            for (int j = number * 5 - 5; j < maxLength; j++)
-                 {
-                    getArray.Add(answer[j]);
-                 }
-            if (answer == null)
+            {
                 return NotFound();
-            return Ok(getArray);
+            }
+            
         }
 
         //POST api/answers
         [HttpPost]
-        public async Task<ActionResult<Question>> Post(Answer answer)
+        public async Task<ActionResult<Answer>> Post(CreateAnswer answer)
         {
             if (answer == null)
             {
                 return BadRequest();
             }
-            db.Answers.Add(answer);
+
+            var NewAnswer = _mapper.Map<CreateAnswer, Answer>(answer);
+            db.Answers.Add(NewAnswer);
             await db.SaveChangesAsync();
-            return Ok(answer);
+            return Ok(NewAnswer);
         }
 
      
