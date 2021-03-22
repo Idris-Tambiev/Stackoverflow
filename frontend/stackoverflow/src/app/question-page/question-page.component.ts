@@ -11,7 +11,8 @@ import { Question } from 'src/app/interfaces/question';
 })
 export class QuestionPageComponent implements OnInit {
   answers: Answer[] = [];
-  pagesCount: number = 1
+  pagesCount: number = 1;
+  currentPage: number = 1;
   question: Question;
   idQuestion: number;
   displayedColumns: string[] = ['id', 'AnswerText', 'Date', 'Questionid'];
@@ -20,7 +21,7 @@ export class QuestionPageComponent implements OnInit {
     private route: ActivatedRoute,
     private httpQuestionService: QuestionsService,
     private httpAnswerService: AnswersService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
@@ -30,16 +31,18 @@ export class QuestionPageComponent implements OnInit {
   getQuestion() {
     this.httpQuestionService.getQuestion(this.idQuestion).subscribe((data) => {
       this.question = data;
-      this.pagesCount = Math.ceil(data.answersCount / 5)
+      this.pagesCount = Math.ceil(data.answersCount / 5);
       this.getAnswers(1);
     });
   }
 
   getAnswers(pageNumber: number) {
-    this.httpAnswerService.getAnswers(this.idQuestion, pageNumber).subscribe((data) => {
-      this.answers = data;
-      console.log(this.question.answersCount);
-    });
+    this.httpAnswerService
+      .getAnswers(this.idQuestion, pageNumber)
+      .subscribe((data) => {
+        this.answers = data;
+        console.log(this.question.answersCount);
+      });
   }
 
   counter(i: number) {
@@ -47,6 +50,7 @@ export class QuestionPageComponent implements OnInit {
   }
 
   clickOnPage(event: any) {
-    this.getAnswers(event.target.value)
+    this.currentPage = event.target.value;
+    this.getAnswers(event.target.value);
   }
 }

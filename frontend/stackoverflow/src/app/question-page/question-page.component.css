@@ -15,5 +15,18 @@ table {
   align-items: center;
 }
 .total {
+  margin-left: 60%;
+}
+.AddButton {
   margin-left: 5%;
+}
+.button-pages {
+  margin-left: 5px;
+}
+.button-pages.active {
+  background-color: #3f51b5;
+  color: aliceblue;
+}
+.button-pages:focus {
+  outline: none;
 }

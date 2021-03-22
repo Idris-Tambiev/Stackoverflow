@@ -40,9 +40,9 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatInputModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [QuestionsService, AnswersService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

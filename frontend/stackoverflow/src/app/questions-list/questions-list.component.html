@@ -1,7 +1,7 @@
 <div class="questions_container">
   <div class="questions_header">
     <span>Questions List</span>
-    <button mat-raised-button color="primary" [routerLink]="['create/question']">Add</button>
+    <button class="button-add-question" mat-raised-button color="primary" [routerLink]="['create/question']">Add</button>
   </div>
 
   <div class="Search">
@@ -9,7 +9,6 @@
     <button (click)="findQuestion()">Find</button>
   </div>
   <br>
-  <!-- <app-questions-items *ngFor="let question of questions" [questions]='question'></app-questions-items> -->
   <table mat-table [dataSource]="questions" class="mat-elevation-z8">
 
     <ng-container matColumnDef="id">
@@ -37,9 +36,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
+<br>
   <div class="pagination">
-    <button (click)="clickOnPage($event)" *ngFor="let page of counter(pagesCount);let i = index"
-      value="{{i+1}}">{{i+1}}</button>
+    <button  class="button-pages" (click)="clickOnPage($event)" *ngFor="let curpage of counter(pagesCount);let i = index"
+      value="{{i+1}}" [ngClass]="{active:i === currentPage-1}">{{i+1}}</button>
   </div>
 </div>

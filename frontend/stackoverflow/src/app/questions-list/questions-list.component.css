@@ -16,3 +16,16 @@
 table {
   width: 80%;
 }
+.button-pages {
+  margin-left: 5px;
+}
+.button-pages.active {
+  background-color: #3f51b5;
+  color: aliceblue;
+}
+.button-pages:focus {
+  outline: none;
+}
+.button-add-question {
+  margin-left: 10px;
+}

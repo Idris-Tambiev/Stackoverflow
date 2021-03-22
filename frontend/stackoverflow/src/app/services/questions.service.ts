@@ -9,10 +9,12 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class QuestionsService {
   configUrl: string = environment.Url;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getQuestions(id: number, page: number): Observable<All> {
-    return this.http.get<All>(this.configUrl + '/api/questions/' + id + '/' + page)
+    return this.http.get<All>(
+      this.configUrl + '/api/questions/' + id + '/' + page
+    );
   }
 
   postNewQuestion(question: Question): Observable<string> {
@@ -26,9 +28,9 @@ export class QuestionsService {
       this.configUrl + '/api/questions/' + questionId
     );
   }
-  findQuestion(text: string): Observable<Question> {
-    return this.http.get<Question>(
-      this.configUrl + '/api/questions/' + text
+  find(text: string, page: number): Observable<All> {
+    return this.http.get<All>(
+      this.configUrl + '/api/questions/' + text + '/search/' + page
     );
   }
 }

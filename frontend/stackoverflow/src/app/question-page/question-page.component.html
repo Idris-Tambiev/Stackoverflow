@@ -4,7 +4,7 @@
   <div class="field">
     <span>Answers</span>
     <span class="total">total:{{question.answersCount}}</span>
-    <button [routerLink]="['/create/answer',question.id]" class="AddButton" mat-button color="primary">Add</button>
+    <button mat-raised-button color="primary" [routerLink]="['/create/answer',question.id]" class="AddButton" mat-button color="primary">Add</button>
   </div>
 
   <table mat-table [dataSource]="answers" class="mat-elevation-z8">
@@ -32,9 +32,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
+<br>
   <div class="pagination">
-    <button (click)="clickOnPage($event)" *ngFor="let page of counter(pagesCount);let i = index"
-      value="{{i+1}}">{{i+1}}</button>
+    <button class="button-pages" (click)="clickOnPage($event)" *ngFor="let page of counter(pagesCount);let i = index"
+      value="{{i+1}}" [ngClass]="{active:i === currentPage-1}">{{i+1}}</button>
   </div>
 </div>

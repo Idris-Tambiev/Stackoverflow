@@ -1,15 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using StackOwerflow.Models;
 using StackOwerflow.Mapper;
+using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
 namespace StackOwerflow
@@ -28,7 +23,7 @@ namespace StackOwerflow
             services.AddSingleton(mapper);
             services.AddCors();
             services.AddDbContext<AppDbContext>(options =>
-            options.UseSqlServer("Server=USER-PC\\SQLEXPRESS;Database=stackdb;Trusted_Connection=True;"));
+            options.UseSqlServer("Server=DESKTOP-IN5H1UR\\SQLEXPRESS;Database=stackdb;Trusted_Connection=True;"));
             services.AddControllers();
         }
 
@@ -39,8 +34,8 @@ namespace StackOwerflow
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseRouting();
+            app.UseAuthorization();
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader());
             app.UseHttpsRedirection();
             app.UseEndpoints(endpoints =>

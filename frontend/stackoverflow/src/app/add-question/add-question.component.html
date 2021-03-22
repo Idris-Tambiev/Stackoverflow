@@ -4,5 +4,5 @@
     <br>
     <textarea matInput type="text" placeholder="Description" (input)="getDescription($event)"></textarea>
     <br>
-    <button mat-raised-button color="primary" (click)="createNewQuestion()">Add</button>
+    <button  mat-raised-button color="primary" (click)="createNewQuestion()" [routerLink]="['']">Add</button>
 </div>
